@@ -24,10 +24,10 @@
             {% if app.user %}
                 <ul>
                     <li class="nav-item text-end">
-                        <a class="navbar-brand" >{{ app.user.name }}</a>
+                        <a class="navbar-brand" >{{ app.user.username }}</a>
                     </li>
                     <li class="nav-item text-end">
-                        <a class="navbar-brand" href="/logout" >Log Out</a>
+                        <a class="navbar-brand btn btn-warning" href="/logout" >Log Out</a>
                     </li>
                 </ul>
             {% else %}
