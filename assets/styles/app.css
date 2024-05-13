@@ -6,3 +6,7 @@ body {
 ul {
     list-style-type: none;
 }
+
+.light {
+    background-color: rebeccapurple;
+}
