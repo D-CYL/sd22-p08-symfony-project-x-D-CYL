@@ -4,13 +4,17 @@
 
 {% block body %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<div class="container">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/SD Student/Documents/GitHub/sd22-p08-symfony-project-x-D-CYL/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>C:/Users/SD Student/Documents/GitHub/sd22-p08-symfony-project-x-D-CYL/templates/home/index.html.twig</code></li>
-    </ul>
+    {% if app.user %}
+    <h1>Hello {{ app.user.name }}</h1>
+    {% else %}
+    <h1>Hello Guest</h1>
+    {% endif %}
+
+    <div class="container">
+
+    </div>
+
 </div>
 {% endblock %}

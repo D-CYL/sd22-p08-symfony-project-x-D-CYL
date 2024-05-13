@@ -24,16 +24,17 @@
             {% if app.user %}
                 <ul>
                     <li class="nav-item text-end">
-                        <a class="navbar-brand" >{{ app.user.firstname }}</a>
+                        <a class="navbar-brand" >{{ app.user.name }}</a>
                     </li>
                     <li class="nav-item text-end">
-                        <a class="navbar-brand" href="/logout" >Uitloggen</a>
+                        <a class="navbar-brand" href="/logout" >Log Out</a>
                     </li>
                 </ul>
             {% else %}
                 <ul>
                     <li class="nav-item text-end">
-                        <a class="navbar-brand" href="/login" >Inloggen</a>
+                        <a class="navbar-brand" href="/register" >Sign Up</a>
+                        <a class="navbar-brand" href="/login" >Log In</a>
                     </li>
                 </ul>
             {% endif %}
