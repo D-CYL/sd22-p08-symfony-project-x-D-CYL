@@ -12,12 +12,14 @@
     <h1>Hello Guest</h1>
     {% endif %}
 
-    <div class="container-fluid purple unselectable">
-        <br>
-        <h1 class="text-light">
-            lorem ipsum
-        </h1>
-    </div>
+    {% include '/home/carousel.html.twig' %}
+
+{#    <div class="container-fluid purple unselectable">#}
+{#        <br>#}
+{#        <h1 class="text-light">#}
+{#            lorem ipsum#}
+{#        </h1>#}
+{#    </div>#}
 
 </div>
 {% endblock %}
