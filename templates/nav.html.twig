@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark">
+<nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
         <a class="navbar-brand" href="{{ path('app_home') }}">
             <img src="{{ 'https://softivuspro.com/html/casino/casino/assets/img/logo/logo.png' }}">
@@ -10,14 +10,17 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
+                    <a class="nav-link text-light" href="{{ path('app_home') }}">Games</a>
 {#                    <a class="nav-link" href="{{ path('app_home') }}">Home</a>#}
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link text-light" href="{{ path('app_home') }}">Categories</a>
 {#                    <a class="nav-link" href="{{ path('app_orders') }}">Bestellingen</a>#}
                 </li>
-                <li class="nav-item">
+{#                <li class="nav-item">#}
+{#                    <a class="nav-link" href="{{ path('app_home') }}">Home</a>#}
 {#                    <a class="nav-link" href="{{ path('app_user') }}">Gebruiker</a>#}
-                </li>
+{#                </li>#}
             </ul>
         </div>
         <div class="navbar-nav">
@@ -33,8 +36,8 @@
             {% else %}
                 <ul>
                     <li class="nav-item text-end">
-                        <a class="navbar-brand" href="/register" >Sign Up</a>
-                        <a class="navbar-brand" href="/login" >Log In</a>
+                        <a class="navbar-brand btn btn-warning" href="/register" >Sign Up</a>
+                        <a class="navbar-brand btn btn-warning" href="/login" >Log In</a>
                     </li>
                 </ul>
             {% endif %}
