@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+    <div class="col-12 col-md-6 col-lg-4 col-xl-3 d-flex align-items-stretch">
+        {#        {% for game in  %}#}
+
+        <div class="card mb-3">
+            <div class="row g-1">
+                <div class="col-md-4 pt-4 p-2">
+                    <img src="#" class="img-fluid rounded-start">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">You are now in the game info page</h5>
+                        <p class="card-text">€,-</p>
+                        {#                            <a href="{{ path('app_orders', {'game' : game.id}) }}" class="btn btn-outline-primary">Add to cart</a>#}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
