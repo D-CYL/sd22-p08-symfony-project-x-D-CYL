@@ -4,21 +4,23 @@
 
 {% block body %}
     <div class="col-12 col-md-6 col-lg-4 col-xl-3 d-flex align-items-stretch">
-{#        {% for game in  %}#}
+        {% for game in game %}
 
             <div class="card mb-3">
                 <div class="row g-1">
                     <div class="col-md-4 pt-4 p-2">
                         <img src="#" class="img-fluid rounded-start">
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <div class="card-body">
-                            <h5 class="card-title"></h5>
+                            <h5 class="card-title">{{ game.name }}</h5>
                             <p class="card-text">€,-</p>
-{#                            <a href="{{ path('app_orders', {'game' : game.id}) }}" class="btn btn-outline-primary">Add to cart</a>#}
+                            <a href="{{ path('app_game_info', {'game' : game.id}) }}" class="btn btn-outline-primary">Add to cart</a>
                         </div>
                     </div>
                 </div>
             </div>
     </div>
+
+{% endfor %}
 {% endblock %}
