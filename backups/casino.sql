@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 27 mei 2024 om 15:08
+-- Gegenereerd op: 29 mei 2024 om 09:03
 -- Serverversie: 10.4.32-MariaDB
 -- PHP-versie: 8.2.12
 
@@ -29,8 +29,17 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `category` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL
+  `name` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `category`
+--
+
+INSERT INTO `category` (`id`, `name`, `image`) VALUES
+(1, 'Roulette', 'https://tscom.imgix.net/IMG_7891_830226ae57.false?width=996&auto=compress,format&fit=clip&crop=faces'),
+(2, 'Roulette2', 'https://tscom.imgix.net/IMG_7891_830226ae57.false?width=996&auto=compress,format&fit=clip&crop=faces');
 
 -- --------------------------------------------------------
 
@@ -64,7 +73,8 @@ INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_
 ('DoctrineMigrations\\Version20240513092905', '2024-05-27 13:38:31', 5),
 ('DoctrineMigrations\\Version20240513115754', '2024-05-27 13:38:31', 15),
 ('DoctrineMigrations\\Version20240527081431', '2024-05-27 13:38:31', 72),
-('DoctrineMigrations\\Version20240527123629', '2024-05-27 14:36:37', 46);
+('DoctrineMigrations\\Version20240527123629', '2024-05-27 14:36:37', 46),
+('DoctrineMigrations\\Version20240529064522', '2024-05-29 08:45:36', 35);
 
 -- --------------------------------------------------------
 
@@ -176,7 +186,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT voor een tabel `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT voor een tabel `game`
