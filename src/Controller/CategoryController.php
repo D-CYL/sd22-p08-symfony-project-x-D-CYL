@@ -20,11 +20,24 @@ class CategoryController extends AbstractController
     }
 
     #[Route('/category/{category}', name: 'app_genre')]
-    public function category(EntityManagerInterface $entityManager): Response
+    public function category(EntityManagerInterface $entityManager, $category): Response
     {
-        $categories = $entityManager->getRepository(Category::class)->findAll();
+        //todo: this is for linking to a page for all games that have the tag/genre you click on
+        $genre = $entityManager->getRepository(Category::class)->find($category);
         return $this->render('category/genre.html.twig', [
-            'categories' => $categories,
+            'genre' => $genre,
+        ]);
+    }
+
+    #[Route('/category/create/{category}', name: 'app_create')]
+    public function create(EntityManagerInterface $entityManager): Response
+    {
+        
+        $category = new Category();
+        $entityManager->persist($category);
+        $entityManager->flush();
+        return $this->render('category/genre.html.twig', [
+            'category' => $category,
         ]);
     }
 }

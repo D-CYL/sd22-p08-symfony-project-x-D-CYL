@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block body %}
+    <h1>Sign Up</h1>
+
+    {{ form_errors(registrationForm) }}
+
+    {{ form_start(registrationForm) }}
+
+    <div class="row">
+        {{ form_row(registrationForm.username) }}
+        {{ form_row(registrationForm.plainPassword) }}
+        {{ form_row(registrationForm.agreeTerms) }}
+        {{ form_row(registrationForm.submit) }}
+    </div>
+
+    {{ form_end(registrationForm) }}
+{% endblock %}
