@@ -29,14 +29,14 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    #[Route('/category/create/{category}', name: 'app_create')]
+    #[Route('create/{category}', name: 'app_category_create')]
     public function create(EntityManagerInterface $entityManager): Response
     {
         
         $category = new Category();
         $entityManager->persist($category);
         $entityManager->flush();
-        return $this->render('category/genre.html.twig', [
+        return $this->render('create.html.twig', [
             'category' => $category,
         ]);
     }
