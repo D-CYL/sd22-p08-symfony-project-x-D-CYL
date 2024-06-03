@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Category;
+use App\Form\CreateFormType;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -29,15 +31,22 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    #[Route('create/{category}', name: 'app_category_create')]
-    public function create(EntityManagerInterface $entityManager): Response
+    #[Route('/create/category', name: 'category_create')]
+    public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
-        
         $category = new Category();
-        $entityManager->persist($category);
-        $entityManager->flush();
+        $form = $this->createForm(CreateFormType::class, $category);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($category);
+            $entityManager->flush();
+            return $this->redirectToRoute('app_category');
+        }
+
+
         return $this->render('create.html.twig', [
-            'category' => $category,
+            'form' => $form->createView(),
         ]);
     }
 }

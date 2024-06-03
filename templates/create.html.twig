@@ -3,18 +3,17 @@
 {% block title %}Sign Up{% endblock %}
 
 {% block body %}
-    <h1>Sign Up</h1>
+    <h1>Fill In</h1>
 
-    {{ form_errors(registrationForm) }}
+    {{ form_errors(form) }}
 
-    {{ form_start(registrationForm) }}
+    {{ form_start(form) }}
 
     <div class="row">
-        {{ form_row(registrationForm.username) }}
-        {{ form_row(registrationForm.plainPassword) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-        {{ form_row(registrationForm.submit) }}
+        {{ form_row(form.name) }}
+        {{ form_row(form.image) }}
+        {{ form_row(form.submit) }}
     </div>
 
-    {{ form_end(registrationForm) }}
+    {{ form_end(form) }}
 {% endblock %}

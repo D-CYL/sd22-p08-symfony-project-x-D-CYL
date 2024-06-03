@@ -19,7 +19,7 @@ class CreateFormType extends AbstractType
             ->add('image')
             ->add('games', EntityType::class, [
                 'class' => Game::class,
-'choice_label' => 'id',
+'choice_label' => 'name',
 'multiple' => true,
             ])
             ->add('submit', SubmitType::class, ['label' => 'Create'])
