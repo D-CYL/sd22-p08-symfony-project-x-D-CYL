@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 29 mei 2024 om 09:03
+-- Gegenereerd op: 03 jun 2024 om 14:55
 -- Serverversie: 10.4.32-MariaDB
 -- PHP-versie: 8.2.12
 
@@ -38,8 +38,8 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `name`, `image`) VALUES
-(1, 'Roulette', 'https://tscom.imgix.net/IMG_7891_830226ae57.false?width=996&auto=compress,format&fit=clip&crop=faces'),
-(2, 'Roulette2', 'https://tscom.imgix.net/IMG_7891_830226ae57.false?width=996&auto=compress,format&fit=clip&crop=faces');
+(6, 'Singleplayer', 'https://tscom.imgix.net/IMG_7891_830226ae57.false?width=996&auto=compress,format&fit=clip&crop=faces'),
+(7, 'test', 'https://symfony.com/images/network/blackfire_01.png');
 
 -- --------------------------------------------------------
 
@@ -51,6 +51,14 @@ CREATE TABLE `category_game` (
   `category_id` int(11) NOT NULL,
   `game_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `category_game`
+--
+
+INSERT INTO `category_game` (`category_id`, `game_id`) VALUES
+(6, 1),
+(7, 1);
 
 -- --------------------------------------------------------
 
@@ -94,7 +102,7 @@ CREATE TABLE `game` (
 --
 
 INSERT INTO `game` (`id`, `name`, `description`, `image`) VALUES
-(1, 'Roulette', 'safnabkjfsanfsan', 'https://softivuspro.com/html/casino/casino/assets/img/banner/banner-shape.png');
+(1, 'Roulette', 'roulette', 'https://softivuspro.com/html/casino/casino/assets/img/banner/banner-shape.png');
 
 -- --------------------------------------------------------
 
@@ -130,7 +138,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `roles`, `password`) VALUES
-(1, 'test', '[]', '$2y$13$FJTRmAmP.zS72cvDeynqbOkM2I6n1QfOriYEqWW2BwYYuvCybUwy2');
+(1, 'tester', '[]', '$2y$13$WVMEbTtV5wRezRhUu4ZowuR4Bw4ONEyHry7vCK5pZuy0LKt.DC6s6'),
+(2, 'Administrator', '[\"ROLE_ADMIN\"]', '$2y$13$vG2OosAt9ktyEIY44.mweuplAb1vINKlRxYKsDS0xcZlWPDJjayZ2');
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -186,7 +195,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT voor een tabel `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT voor een tabel `game`
@@ -204,7 +213,7 @@ ALTER TABLE `messenger_messages`
 -- AUTO_INCREMENT voor een tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Beperkingen voor geëxporteerde tabellen
