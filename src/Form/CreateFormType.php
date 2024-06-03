@@ -24,11 +24,6 @@ class CreateFormType extends AbstractType
                 'multiple' => true,
             ])
             ->add('submit', SubmitType::class, ['label' => 'Create']);
-
-//        $builder->add('emails', CollectionType::class, [// each entry in the array will be an "email" field
-//            'entry_type' => CreateFormType::class,
-//            // these options are passed to each "email" type
-//            'entry_options' => ['attr' => ['class' => 'email-box'],],]);
     }
 
 
