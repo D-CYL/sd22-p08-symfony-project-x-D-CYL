@@ -30,17 +30,17 @@ class GameController extends AbstractController
         ]);
     }
 
-    #[Route('/create/category', name: 'category_create')]
+    #[Route('/create/category', name: 'game_create')]
     public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $category = new Category();
-        $form = $this->createForm(CreateFormType::class, $category);
+        $game = new Game();
+        $form = $this->createForm(CreateFormType::class, $game);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($category);
+            $entityManager->persist($game);
             $entityManager->flush();
-            return $this->redirectToRoute('app_category');
+            return $this->redirectToRoute('app_game');
         }
 
 
