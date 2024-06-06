@@ -30,7 +30,7 @@ class GameController extends AbstractController
         ]);
     }
 
-    #[Route('/create/category', name: 'game_create')]
+    #[Route('/create/game', name: 'game_create')]
     public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
         $game = new Game();

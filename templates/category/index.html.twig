@@ -3,16 +3,24 @@
 
 
 {% block body %}
-    <div class="d-flex align-items-stretch d-grid gap-5">
+<div class="d-flex align-items-stretch d-grid gap-5">
     {% for category in categories %}
 
+
         <div class="card" style="width: 18rem;">
-            <img src="{{ category.image }}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">{{ category.name }}</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="{{ path('app_genre', {'category' : category.id}) }}" class="btn btn-primary">Go to category</a>
+        <img src="{{ category.image }}" class="card-img-top" alt="...">
+        <div class="card-body">
+        <h5 class="card-title">{{ category.name }}</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+        <a href="{{ path('app_genre', {'category' : category.id}) }}" class="btn btn-primary">Go to category</a>
+        {% if app.user %}
+            {% if "ROLE_ADMIN" in app.user.roles %}
+                    <a class="btn btn-warning" href="{{ path('category_edit', {'category' : category.id}) }}">Edit</a>
+                    <a class="btn btn-danger" href="{{ path('category_delete', {'category' : category.id}) }}">Delete</a>
+            {% endif %}
             </div>
-        </div>
+            </div>
+        {% endif %}
     {% endfor %}
-{% endblock %}
+    {% endblock %}
