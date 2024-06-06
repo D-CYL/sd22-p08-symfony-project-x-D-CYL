@@ -80,7 +80,7 @@ class CategoryController extends AbstractController
             return $this->redirectToRoute('app_category');
         }
 
-        return $this->render('category/genre.html.twig', [
+        return $this->render('delete.html.twig', [
             'form' => $form->createView(),
             'category' => $category,
         ]);
