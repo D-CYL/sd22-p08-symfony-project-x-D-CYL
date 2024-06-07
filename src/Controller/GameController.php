@@ -48,4 +48,40 @@ class GameController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+    
+    #[Route('/game/{game}/edit', name: 'game_edit')]
+    public function edit(Request $request, Game $game, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(CreateFormType::class, $game);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+            return $this->redirectToRoute('app_game');
+        }
+
+        return $this->render('edit.html.twig', [
+            'form' => $form->createView(),
+            'game' => $game,
+        ]);
+    }
+
+    #[Route('/game/{game}/delete', name: 'game_delete')]
+    public function delete(Request $request, Game $game, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(CreateFormType::class, $game);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+            return $this->redirectToRoute('app_game');
+        }
+
+        return $this->render('delete.html.twig', [
+            'form' => $form->createView(),
+            'game' => $game,
+        ]);
+    }
 }
