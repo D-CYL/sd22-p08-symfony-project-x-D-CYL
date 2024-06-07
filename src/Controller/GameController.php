@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Game;
 use App\Form\CreateFormType;
+use App\Form\CreateGameType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,7 +35,7 @@ class GameController extends AbstractController
     public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
         $game = new Game();
-        $form = $this->createForm(CreateFormType::class, $game);
+        $form = $this->createForm(CreateGameType::class, $game);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -52,7 +53,7 @@ class GameController extends AbstractController
     #[Route('/game/{game}/edit', name: 'game_edit')]
     public function edit(Request $request, Game $game, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(CreateFormType::class, $game);
+        $form = $this->createForm(CreateGameType::class, $game);
 
         $form->handleRequest($request);
 
@@ -61,7 +62,7 @@ class GameController extends AbstractController
             return $this->redirectToRoute('app_game');
         }
 
-        return $this->render('edit.html.twig', [
+        return $this->render('create.html.twig', [
             'form' => $form->createView(),
             'game' => $game,
         ]);
