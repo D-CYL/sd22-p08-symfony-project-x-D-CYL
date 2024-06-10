@@ -11,7 +11,6 @@
 
             {% if "ROLE_ADMIN" in app.user.roles %}
                 You have access to the ADD/DELETE/EDIT pages
-                <a class="navbar-brand btn btn-warning text-dark" href="{{ path('user_create') }}">Add user</a>
                 {% for user in users %}
                     <div class="container-fluid purple unselectable">
                         <br>
