@@ -13,6 +13,9 @@
         <h5 class="card-title">{{ game.name }}</h5>
         <p class="card-text">{{ game.description }}</p>
         <a href="{{ path('app_game_info', {'game' : game.id}) }}" class="btn btn-primary">Go to game</a>
+        {% if game.url %}
+            <a href="{{ game.url }}" class="btn btn-secondary" target="_blank">Visit Project</a>
+        {% endif %}
         {% if app.user %}
             {% if "ROLE_ADMIN" in app.user.roles %}
                 <a class="btn btn-warning" href="{{ path('game_edit', {'game' : game.id}) }}">Edit</a>
