@@ -17,7 +17,7 @@ class GameType extends AbstractType
         $builder
             ->add('name')
             ->add('image')
-            ->add('games', EntityType::class, [
+            ->add('categories', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'name',
                 'multiple' => true,
