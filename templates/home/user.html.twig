@@ -8,25 +8,6 @@
 
         {% if app.user %}
             <h1>Hello {{ app.user.username }}</h1>
-
-            {% if "ROLE_ADMIN" in app.user.roles %}
-                You have access to the ADD/DELETE/EDIT pages
-                {% for user in users %}
-                    <div class="container-fluid purple unselectable">
-                        <br>
-                        <h4 class="text-light">{{ user.username }}</h4>
-                        <ul>
-                            <li class="nav-item text-end">
-                                <a class="btn btn-warning" href="{{ path('user_edit', {'user' : user.id}) }}">Edit</a>
-                            </li>
-                            <li class="nav-item text-end">
-                                <a class="btn btn-danger" href="{{ path('user_delete', {'user' : user.id}) }}">Delete</a>
-                            </li>
-                        </ul>
-                    </div>
-                {% endfor %}
-            {% endif %}
-
         {% else%}
             <h1>Hello Guest</h1>
         {% endif %}
