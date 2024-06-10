@@ -11,8 +11,7 @@
         <img src="{{ game.image }}" class="card-img-top" alt="...">
         <div class="card-body">
         <h5 class="card-title">{{ game.name }}</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
+        <p class="card-text">{{ game.description }}</p>
         <a href="{{ path('app_game_info', {'game' : game.id}) }}" class="btn btn-primary">Go to game</a>
         {% if app.user %}
             {% if "ROLE_ADMIN" in app.user.roles %}

@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Category;
-use App\Form\CreateFormType;
+use App\Form\CategoryType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -35,7 +35,7 @@ class CategoryController extends AbstractController
     public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
         $category = new Category();
-        $form = $this->createForm(CreateFormType::class, $category);
+        $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -45,7 +45,7 @@ class CategoryController extends AbstractController
         }
 
 
-        return $this->render('create.html.twig', [
+        return $this->render('CRUD.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -53,7 +53,7 @@ class CategoryController extends AbstractController
     #[Route('/category/{category}/edit', name: 'category_edit')]
     public function edit(Request $request, Category $category, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(CreateFormType::class, $category);
+        $form = $this->createForm(CategoryType::class, $category);
 
         $form->handleRequest($request);
 
@@ -62,14 +62,14 @@ class CategoryController extends AbstractController
             return $this->redirectToRoute('app_category');
         }
 
-        return $this->render('create.html.twig', [
+        return $this->render('CRUD.html.twig', [
             'form' => $form->createView(),
             'category' => $category,
         ]);
     }
 
     #[Route('/category/{category}/delete', name: 'category_delete')]
-    public function delete(Request $request, Category $category, EntityManagerInterface $entityManager): Response
+    public function delete(Category $category, EntityManagerInterface $entityManager): Response
     {
 
        $entityManager->remove($category);

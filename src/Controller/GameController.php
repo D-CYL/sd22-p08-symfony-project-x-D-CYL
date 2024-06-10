@@ -3,8 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Game;
-use App\Form\CreateFormType;
-use App\Form\CreateGameType;
+use App\Form\CategoryType;
+use App\Form\GameType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -35,7 +35,7 @@ class GameController extends AbstractController
     public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
         $game = new Game();
-        $form = $this->createForm(CreateGameType::class, $game);
+        $form = $this->createForm(GameType::class, $game);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -45,7 +45,7 @@ class GameController extends AbstractController
         }
 
 
-        return $this->render('create.html.twig', [
+        return $this->render('CRUD.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -53,7 +53,7 @@ class GameController extends AbstractController
     #[Route('/game/{game}/edit', name: 'game_edit')]
     public function edit(Request $request, Game $game, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(CreateGameType::class, $game);
+        $form = $this->createForm(GameType::class, $game);
 
         $form->handleRequest($request);
 
@@ -62,27 +62,18 @@ class GameController extends AbstractController
             return $this->redirectToRoute('app_game');
         }
 
-        return $this->render('create.html.twig', [
+        return $this->render('CRUD.html.twig', [
             'form' => $form->createView(),
             'game' => $game,
         ]);
     }
 
     #[Route('/game/{game}/delete', name: 'game_delete')]
-    public function delete(Request $request, Game $game, EntityManagerInterface $entityManager): Response
+    public function delete(Game $game, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(CreateFormType::class, $game);
+        $entityManager->remove($game);
+        $entityManager->flush();
 
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-            return $this->redirectToRoute('app_game');
-        }
-
-        return $this->render('delete.html.twig', [
-            'form' => $form->createView(),
-            'game' => $game,
-        ]);
+        return $this->redirectToRoute('app_game');
     }
 }
