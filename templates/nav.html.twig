@@ -30,19 +30,21 @@
         </div>
         <div class="navbar-nav">
             {% if app.user %}
+                {% for user in user %}
                 <ul>
                     <li class="nav-item text-end">
-                        <a class="navbar-brand text-white" href="/profile">{{ app.user.username }}</a>
+                        <a class="navbar-brand text-white" href="{{ path('app_profile', {'user' : user.id}) }}">{{ app.user.username }}</a>
                     </li>
                     <li class="nav-item text-end">
-                        <a class="navbar-brand btn btn-warning" href="/logout" >Log Out</a>
+                        <a class="navbar-brand btn btn-warning" href="{{ path('app_logout') }}" >Log Out</a>
                     </li>
                 </ul>
+                {% endfor %}
             {% else %}
                 <ul>
                     <li class="nav-item text-end">
-                        <a class="navbar-brand btn btn-warning" href="/register" >Sign Up</a>
-                        <a class="navbar-brand btn btn-warning" href="/login" >Log In</a>
+                        <a class="navbar-brand btn btn-warning" href="{{ path('app_register') }}" >Sign Up</a>
+                        <a class="navbar-brand btn btn-warning" href="{{ path('app_login') }}" >Log In</a>
                     </li>
                 </ul>
             {% endif %}

@@ -23,13 +23,21 @@ class HomeController extends AbstractController
         ]);
     }
 
+    #[Route('/profile/{user}', name: 'app_profile')]
+    public function profile(EntityManagerInterface $entityManager, $user): Response
+    {
+        $user = $entityManager->getRepository(User::class)->find($user);
+        return $this->render('home/user.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
     #[Route('/create/user', name: 'user_create')]
     public function create(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
             $user->setPassword(
@@ -38,13 +46,10 @@ class HomeController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-
             $entityManager->persist($user);
             $entityManager->flush();
             return $this->redirectToRoute('app_home');
         }
-
-
         return $this->render('user.html.twig', [
             'form' => $form->createView(),
         ]);
@@ -54,14 +59,11 @@ class HomeController extends AbstractController
     public function edit(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(RegistrationFormType::class, $user);
-
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
             return $this->redirectToRoute('app_home');
         }
-
         return $this->render('user.html.twig', [
             'form' => $form->createView(),
             'user' => $user,
@@ -73,16 +75,6 @@ class HomeController extends AbstractController
     {
         $entityManager->remove($user);
         $entityManager->flush();
-
         return $this->redirectToRoute('app_home');
-    }
-
-    #[Route('/profile', name: 'app_profile')]
-    public function profile(EntityManagerInterface $entityManager): Response
-    {
-//        $users = $entityManager->getRepository(User::class)->find($user);
-        return $this->render('home/user.html.twig', [
-            'controller_name' => 'user',
-        ]);
     }
 }
