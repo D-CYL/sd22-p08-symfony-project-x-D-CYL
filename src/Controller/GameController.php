@@ -41,6 +41,7 @@ class GameController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($game);
             $entityManager->flush();
+            $this->addFlash('success', 'Game successfully created!');
             return $this->redirectToRoute('app_game');
         }
 
@@ -58,7 +59,9 @@ class GameController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($game);
             $entityManager->flush();
+            $this->addFlash('success', 'Game successfully updated!');
             return $this->redirectToRoute('app_game');
         }
 

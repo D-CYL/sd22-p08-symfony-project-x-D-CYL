@@ -27,8 +27,10 @@
                     </div>
                 {% endfor %}
             {% endif %}
-
-        {% else%}
+{#            :todo have to make a view for EMPLOYEE #}
+{#        {% else if "ROLE_EMPLOYEE" in app.user.roles %}#}
+{#            <h1>Hello </h1>#}
+            {% else %}
             <h1>Hello Guest</h1>
         {% endif %}
 

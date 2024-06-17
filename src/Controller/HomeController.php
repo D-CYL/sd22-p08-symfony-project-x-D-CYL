@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
-use ContainerJxV0MsQ\getRegistrationFormTypeService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,9 +25,9 @@ class HomeController extends AbstractController
     #[Route('/profile/{user}', name: 'app_profile')]
     public function profile(EntityManagerInterface $entityManager, $user): Response
     {
-        $user = $entityManager->getRepository(User::class)->find($user);
+        $users = $entityManager->getRepository(User::class)->find($user);
         return $this->render('home/user.html.twig', [
-            'user' => $user,
+            'users' => $users,
         ]);
     }
 
@@ -48,6 +47,7 @@ class HomeController extends AbstractController
             );
             $entityManager->persist($user);
             $entityManager->flush();
+            $this->addFlash('success', 'User successfully created!');
             return $this->redirectToRoute('app_home');
         }
         return $this->render('user.html.twig', [
@@ -61,7 +61,9 @@ class HomeController extends AbstractController
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($user);
             $entityManager->flush();
+            $this->addFlash('success', 'User successfully updated!');
             return $this->redirectToRoute('app_home');
         }
         return $this->render('user.html.twig', [
