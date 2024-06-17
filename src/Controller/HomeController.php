@@ -25,9 +25,9 @@ class HomeController extends AbstractController
     #[Route('/profile/{user}', name: 'app_profile')]
     public function profile(EntityManagerInterface $entityManager, $user): Response
     {
-        $users = $entityManager->getRepository(User::class)->find($user);
+        $user = $entityManager->getRepository(User::class)->find($user);
         return $this->render('home/user.html.twig', [
-            'users' => $users,
+            'user' => $user,
         ]);
     }
 
