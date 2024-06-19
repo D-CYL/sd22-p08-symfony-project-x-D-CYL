@@ -23,11 +23,13 @@
                                 <div class="col-sm-9 text-secondary">{{ app.user.username }}</div>
                             </div>
                             <hr>
-                            <div class="row">
-                                <div class="col-sm-3"><h6>Role</h6></div>
-                                <div class="col-sm-9 text-secondary">{{ app.user.roles|join(', ') }}</div>
-                            </div>
-                            <hr>
+                            {% if "ROLE_ADMIN" in app.user.roles or "ROLE_EMPLOYEE" in app.user.roles %}
+                                <div class="row">
+                                    <div class="col-sm-3"><h6>Role</h6></div>
+                                    <div class="col-sm-9 text-secondary">{{ app.user.roles|join(', ') }}</div>
+                                </div>
+                                <hr>
+                            {% endif %}
                             <div class="row">
                                 <div class="col-sm-12">
                                     <a class="btn btn-warning" href="{{ path('user_edit', {'user': app.user.id}) }}">Edit</a>
@@ -37,8 +39,6 @@
                     </div>
                 </div>
             </div>
-        {% else %}
-            <p>You are not logged in.</p>
         {% endif %}
     </div>
 {% endblock %}
